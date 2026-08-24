@@ -37,7 +37,7 @@ $request->validate([
 use Simtabi\Laranail\PasswordTools\Facades\PasswordTools;
 
 PasswordTools::password()->length(20)->symbols()->withoutAmbiguous()->make();
-// "wA]tf9Kq#mE}c7Xr+dNz"
+// → 20 random characters, every enabled class guaranteed present
 
 PasswordTools::passphrase()->words(5)->capitalize()->withNumber()->make();
 // "Copier-Sandpaper-Anthem7-Grievance-Overcast"   (~65 bits)
