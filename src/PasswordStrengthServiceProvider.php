@@ -69,9 +69,7 @@ class PasswordStrengthServiceProvider extends PackageServiceProvider
             return;
         }
 
-        $node::macro('strength',
-            /** @phpstan-ignore-next-line $this is the PasswordRule node at call time */
-            fn (?int $minScore = null): mixed => $this->rule(new StrongPassword($minScore)));
+        $node::macro('strength', fn (?int $minScore = null): mixed => $this->rule(new StrongPassword($minScore)));
     }
 
     private function configPath(): string
