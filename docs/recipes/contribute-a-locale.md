@@ -10,7 +10,7 @@ The suite asserts every `FeedbackKey` case resolves — a partial translation is
 not silent English fallback. Applications overriding a few sentences publish instead:
 
 ```bash
-php artisan vendor:publish --tag=laranail::password-strength-translations
+php artisan vendor:publish --tag=laranail::password-tools-translations
 ```
 
 ---

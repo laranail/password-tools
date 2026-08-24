@@ -11,7 +11,7 @@ final class EntropyScorer implements PasswordScorer
     }
 }
 
-// config/laranail-password-strength.php
+// config/laranail-password-tools.php
 'scorer' => EntropyScorer::class,
 ```
 

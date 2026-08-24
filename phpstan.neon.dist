@@ -35,5 +35,5 @@ parameters:
         # depends on which laranail/validation line the dual dev range
         # resolved, so the ignore must tolerate absence.
         - identifier: method.notFound
-          path: src/PasswordStrengthServiceProvider.php
+          path: src/PasswordToolsServiceProvider.php
           reportUnmatched: false

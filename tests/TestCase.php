@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\PasswordStrength\Tests;
+namespace Simtabi\Laranail\PasswordTools\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use Simtabi\Laranail\PasswordStrength\PasswordStrengthServiceProvider;
+use Simtabi\Laranail\PasswordTools\PasswordToolsServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
     protected function getPackageProviders($app): array
     {
-        return [PasswordStrengthServiceProvider::class];
+        return [PasswordToolsServiceProvider::class];
     }
 }

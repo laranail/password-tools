@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\PasswordStrength\Rules;
+namespace Simtabi\Laranail\PasswordTools\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\DataAwareRule;
 use Illuminate\Contracts\Validation\ValidationRule;
-use Simtabi\Laranail\PasswordStrength\Contracts\PasswordScorer;
+use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
 
 /**
  * Fails when the score falls below the floor (default from config; 3 =
@@ -62,7 +62,7 @@ final class StrongPassword implements DataAwareRule, ValidationRule
             return;
         }
 
-        $fail($this->message ?? 'laranail-password-strength::messages.weak')->translate();
+        $fail($this->message ?? 'laranail-password-tools::messages.weak')->translate();
 
         foreach ($score->messages(app('translator')) as $feedback) {
             $fail($feedback);
@@ -97,7 +97,7 @@ final class StrongPassword implements DataAwareRule, ValidationRule
             return $this->minScore;
         }
 
-        $configured = config('laranail.password-strength.min_score', 3);
+        $configured = config('laranail.password-tools.min_score', 3);
 
         return is_int($configured) ? $configured : 3;
     }

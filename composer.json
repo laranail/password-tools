@@ -1,5 +1,5 @@
 {
-    "name": "laranail/password-strength",
+    "name": "laranail/password-tools",
     "description": "zxcvbn-style password strength scoring (0-4) with a translated feedback catalogue — a validation rule and a swappable scorer service.",
     "keywords": [
         "laravel",
@@ -9,7 +9,7 @@
         "security",
         "validation"
     ],
-    "homepage": "https://opensource.simtabi.com/products/laranail/password-strength",
+    "homepage": "https://opensource.simtabi.com/products/laranail/password-tools",
     "license": "MIT",
     "authors": [
         {
@@ -25,9 +25,9 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/laranail/password-strength/issues",
-        "source": "https://github.com/laranail/password-strength",
-        "docs": "https://opensource.simtabi.com/documentation/laranail/password-strength/"
+        "issues": "https://github.com/laranail/password-tools/issues",
+        "source": "https://github.com/laranail/password-tools",
+        "docs": "https://opensource.simtabi.com/documentation/laranail/password-tools/"
     },
     "repositories": [
         {
@@ -74,12 +74,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Simtabi\\Laranail\\PasswordStrength\\": "src/"
+            "Simtabi\\Laranail\\PasswordTools\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Simtabi\\Laranail\\PasswordStrength\\Tests\\": "tests/"
+            "Simtabi\\Laranail\\PasswordTools\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -90,11 +90,11 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Simtabi\\Laranail\\PasswordStrength\\PasswordStrengthServiceProvider"
+                "Simtabi\\Laranail\\PasswordTools\\PasswordToolsServiceProvider"
             ]
         },
         "branch-alias": {
-            "dev-main": "0.1.x-dev"
+            "dev-main": "0.2.x-dev"
         }
     },
     "config": {

@@ -1,26 +1,28 @@
-# laranail/password-strength
+# laranail/password-tools
 
-[![Latest version on Packagist](https://img.shields.io/packagist/v/laranail/password-strength.svg)](https://packagist.org/packages/laranail/password-strength)
-[![Tests](https://github.com/laranail/password-strength/actions/workflows/run-tests.yml/badge.svg)](https://github.com/laranail/password-strength/actions/workflows/run-tests.yml)
-[![Static analysis](https://github.com/laranail/password-strength/actions/workflows/phpstan.yml/badge.svg)](https://github.com/laranail/password-strength/actions/workflows/phpstan.yml)
+[![Latest version on Packagist](https://img.shields.io/packagist/v/laranail/password-tools.svg)](https://packagist.org/packages/laranail/password-tools)
+[![Tests](https://github.com/laranail/password-tools/actions/workflows/run-tests.yml/badge.svg)](https://github.com/laranail/password-tools/actions/workflows/run-tests.yml)
+[![Static analysis](https://github.com/laranail/password-tools/actions/workflows/phpstan.yml/badge.svg)](https://github.com/laranail/password-tools/actions/workflows/phpstan.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-> zxcvbn-style password strength scoring (0–4) with a translated feedback catalogue — a validation rule and a swappable scorer service.
+> Password tooling for Laravel: zxcvbn strength scoring with a translated feedback catalogue, fluent CSPRNG password and diceware passphrase generators, a validation rule, and an opt-in live strength-meter endpoint.
 
-Targets PHP `^8.4.1 || ^8.5` on Laravel `^13`. The engine is `bjeavons/zxcvbn-php` behind a contract, so it is an implementation detail.
+Targets PHP `^8.4.1 || ^8.5` on Laravel `^13`. The scoring engine (`bjeavons/zxcvbn-php`) sits behind a contract; generation is `random_int()` throughout.
 
 ## Install
 
 ```bash
-composer require laranail/password-strength
+composer require laranail/password-tools
 ```
 
 laranail packages resolve through git VCS repositories — see [Installation](docs/installation.md).
 
 ## Quick start
 
+**Score** — the rule and the service:
+
 ```php
-use Simtabi\Laranail\PasswordStrength\Rules\StrongPassword;
+use Simtabi\Laranail\PasswordTools\Rules\StrongPassword;
 
 $request->validate([
     // min:12 stays: strength COMPLEMENTS a length floor, never replaces it.
@@ -29,16 +31,23 @@ $request->validate([
 ]);
 ```
 
-`userInputsField` feeds the form's own values to the engine as weak tokens — so
-`john@acme.com` scores terribly as a password on the form that collects it. Failures surface
-**translated catalogue sentences** (engine → key enum → locale), never the engine's raw
-English, and never the password.
+**Generate** — fluent, cryptographically secure, every enabled class guaranteed present:
 
 ```php
-use Simtabi\Laranail\PasswordStrength\Facades\PasswordStrength;
+use Simtabi\Laranail\PasswordTools\Facades\PasswordTools;
 
-PasswordStrength::score($candidate);   // Score { score: 0–4, warning, suggestions, guessesLog10 }
+PasswordTools::password()->length(20)->symbols()->withoutAmbiguous()->make();
+// "wA]tf9Kq#mE}c7Xr+dNz"
+
+PasswordTools::passphrase()->words(5)->capitalize()->withNumber()->make();
+// "Copier-Sandpaper-Anthem7-Grievance-Overcast"   (~65 bits)
+
+PasswordTools::password()->atLeast(3)->make();   // regenerate until the scorer agrees
+PasswordTools::score($candidate);                // Score { 0–4, warning, suggestions }
 ```
+
+Failures and feedback surface **translated catalogue sentences** (engine → key enum →
+locale), never the engine's raw English, and never the password.
 
 With [`laranail/validation`](https://github.com/laranail/validation) installed:
 
@@ -51,20 +60,22 @@ FluentRule::password()->min(12)->uncompromised()->strength(3)->notReused();
 ### Guides
 
 - [Installation](docs/installation.md) — requirements, VCS repositories
-- [Getting started](docs/getting-started.md) — the rule, the service, the bridge
-- [Configuration](docs/configuration.md) — the floor, the scorer binding, global weak tokens
-- [Architecture](docs/architecture.md) — why keys not strings, why a contract, the DoS cap
+- [Getting started](docs/getting-started.md) — scoring, generating, the bridge
+- [Configuration](docs/configuration.md) — the floor, the scorer binding, the meter
+- [Architecture](docs/architecture.md) — why keys not strings, the CSPRNG guarantees, the DoS cap
 - [Release](docs/release.md) — versioning and tags
 
 ### Reference
 
 - [`StrongPassword`](docs/tools/strong-password.md) — the rule and its user-inputs plumbing
+- [Generators](docs/tools/generators.md) — the fluent password and passphrase builders
 - [The scorer contract](docs/tools/scorer.md) — `PasswordScorer`, `Score`, `FeedbackKey`, swapping engines
-- [`laranail::password-strength.check`](docs/tools/check.md) — the prompting dev scorer
+- [The meter endpoint](docs/tools/meter.md) — the opt-in live strength meter
+- [Console commands](docs/tools/check.md) — `check` (prompting, never echoes) and `generate`
 
 ### Recipes
 
-- [Signup form](docs/recipes/signup.md) · [A custom scorer](docs/recipes/custom-scorer.md) · [Contribute a locale](docs/recipes/contribute-a-locale.md)
+- [Signup form](docs/recipes/signup.md) · [Suggest a password](docs/recipes/suggest-a-password.md) · [A custom scorer](docs/recipes/custom-scorer.md) · [Contribute a locale](docs/recipes/contribute-a-locale.md)
 
 ## Sister packages
 

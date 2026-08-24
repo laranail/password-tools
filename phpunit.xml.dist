@@ -7,7 +7,7 @@
          failOnRisky="true"
          failOnWarning="true">
     <testsuites>
-        <testsuite name="laranail/password-strength">
+        <testsuite name="laranail/password-tools">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

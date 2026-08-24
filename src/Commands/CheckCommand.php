@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\PasswordStrength\Commands;
+namespace Simtabi\Laranail\PasswordTools\Commands;
 
 use Simtabi\Laranail\Console\Tools\Commands\Command;
 use Simtabi\Laranail\Console\Tools\Commands\Concerns\SupportsNamespacedNames;
-use Simtabi\Laranail\PasswordStrength\Contracts\PasswordScorer;
+use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
 
 /**
  * A dev/debug scorer. Deliberately takes NO password argument: the value
@@ -18,7 +18,7 @@ final class CheckCommand extends Command
 {
     use SupportsNamespacedNames;
 
-    protected $signature = 'laranail::password-strength.check';
+    protected $signature = 'laranail::password-tools.check';
 
     protected $description = 'Score a password (0–4) with translated feedback. Prompts; never echoes.';
 

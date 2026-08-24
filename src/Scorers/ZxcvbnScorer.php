@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\PasswordStrength\Scorers;
+namespace Simtabi\Laranail\PasswordTools\Scorers;
 
-use Simtabi\Laranail\PasswordStrength\Contracts\PasswordScorer;
-use Simtabi\Laranail\PasswordStrength\Support\FeedbackKey;
-use Simtabi\Laranail\PasswordStrength\Support\Score;
+use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
+use Simtabi\Laranail\PasswordTools\Support\FeedbackKey;
+use Simtabi\Laranail\PasswordTools\Support\Score;
 use ZxcvbnPhp\Zxcvbn;
 
 /**
@@ -63,7 +63,7 @@ final class ZxcvbnScorer implements PasswordScorer
 
     public function score(string $password, array $userInputs = []): Score
     {
-        $configured = config('laranail.password-strength.user_inputs', []);
+        $configured = config('laranail.password-tools.user_inputs', []);
         $inputs = [
             ...array_values(array_filter(is_array($configured) ? $configured : [], is_string(...))),
             ...$userInputs,

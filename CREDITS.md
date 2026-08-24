@@ -12,6 +12,13 @@
   [`zxcvbn-ts`](https://github.com/zxcvbn-ts/zxcvbn) `en` language pack's key set — a stable
   key basis, unlike prose.
 
+## The passphrase wordlist
+
+- [EFF's large wordlist for random passphrases](https://www.eff.org/deeplinks/2018/08/dice-roll-your-passwords)
+  (`eff_large_wordlist.txt`, CC-BY 3.0, © Electronic Frontier Foundation) — bundled at
+  `resources/data/eff-large-wordlist.txt` (dice indices stripped, words unchanged). 7,776
+  words chosen by the EFF for memorability and edit distance.
+
 ## Prior art
 
 - [`ziming/laravel-zxcvbn`](https://github.com/ziming/laravel-zxcvbn) — the closest existing

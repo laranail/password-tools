@@ -15,7 +15,7 @@ laranail packages resolve through git VCS repositories, not Packagist:
 ```json
 {
     "repositories": [
-        { "type": "vcs", "url": "https://github.com/laranail/password-strength" },
+        { "type": "vcs", "url": "https://github.com/laranail/password-tools" },
         { "type": "vcs", "url": "https://github.com/laranail/package-tools" },
         { "type": "vcs", "url": "https://github.com/laranail/console" }
     ]
@@ -23,8 +23,8 @@ laranail packages resolve through git VCS repositories, not Packagist:
 ```
 
 ```bash
-composer require laranail/password-strength
-php artisan vendor:publish --tag=laranail::password-strength-config   # optional
+composer require laranail/password-tools
+php artisan vendor:publish --tag=laranail::password-tools-config   # optional
 ```
 
 ---

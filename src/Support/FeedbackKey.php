@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\PasswordStrength\Support;
+namespace Simtabi\Laranail\PasswordTools\Support;
 
 /**
  * The canonical feedback vocabulary — the stable key set the translated
@@ -51,6 +51,6 @@ enum FeedbackKey: string
     /** The translation key in the shipped catalogue. */
     public function translationKey(): string
     {
-        return 'laranail-password-strength::messages.'.$this->value;
+        return 'laranail-password-tools::messages.'.$this->value;
     }
 }

@@ -3,7 +3,7 @@
 ## The rule
 
 ```php
-use Simtabi\Laranail\PasswordStrength\Rules\StrongPassword;
+use Simtabi\Laranail\PasswordTools\Rules\StrongPassword;
 
 $request->validate([
     'password' => ['required', 'string', 'min:12', 'confirmed',
@@ -18,13 +18,24 @@ wants the length.
 ## The service
 
 ```php
-use Simtabi\Laranail\PasswordStrength\Contracts\PasswordScorer;
+use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
 
 $score = app(PasswordScorer::class)->score($candidate, [$user->email]);
 $score->score;          // 0–4
 $score->isAtLeast(3);
 $score->messages(app('translator'));   // translated feedback sentences
 ```
+
+## Generating
+
+```php
+use Simtabi\Laranail\PasswordTools\Facades\PasswordTools;
+
+PasswordTools::password()->length(20)->symbols()->make();
+PasswordTools::passphrase()->words(5)->capitalize()->withNumber()->make();
+```
+
+Both builders are CSPRNG-backed; see [Generators](tools/generators.md) for the guarantees.
 
 ## With laranail/validation
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\PasswordStrength\Support;
+namespace Simtabi\Laranail\PasswordTools\Support;
 
 use Illuminate\Contracts\Translation\Translator;
 

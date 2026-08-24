@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\PasswordStrength\Contracts;
+namespace Simtabi\Laranail\PasswordTools\Contracts;
 
-use Simtabi\Laranail\PasswordStrength\Scorers\ZxcvbnScorer;
-use Simtabi\Laranail\PasswordStrength\Support\Score;
+use Simtabi\Laranail\PasswordTools\Scorers\ZxcvbnScorer;
+use Simtabi\Laranail\PasswordTools\Support\Score;
 
 /**
  * The injectable seam: the rule, the facade and the check command all

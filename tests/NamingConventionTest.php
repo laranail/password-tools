@@ -13,25 +13,26 @@ use Illuminate\Support\ServiceProvider;
 it('registers only org-namespaced Artisan commands', function (): void {
     $ours = array_filter(
         array_keys(Artisan::all()),
-        static fn (string $name): bool => str_contains($name, 'password-strength'),
+        static fn (string $name): bool => str_contains($name, 'password-tools'),
     );
 
     expect($ours)->not->toBeEmpty()
-        ->and($ours)->toContain('laranail::password-strength.check');
+        ->and($ours)->toContain('laranail::password-tools.check')
+        ->toContain('laranail::password-tools.generate');
 
     foreach ($ours as $name) {
-        expect($name)->toStartWith('laranail::password-strength.');
+        expect($name)->toStartWith('laranail::password-tools.');
     }
 });
 
 it('reads configuration only from the flat org key', function (): void {
-    expect(config('laranail.password-strength'))->toBeArray()
-        ->and(config('password-strength'))->toBeNull();
+    expect(config('laranail.password-tools'))->toBeArray()
+        ->and(config('password-tools'))->toBeNull();
 });
 
 it('resolves translations only under the vendored namespace', function (): void {
-    $namespaced = 'laranail-password-strength::messages.weak';
-    $bare = 'password-strength::messages.weak';
+    $namespaced = 'laranail-password-tools::messages.weak';
+    $bare = 'password-tools::messages.weak';
 
     expect(trans($namespaced))->not->toBe($namespaced)
         ->and(trans($bare))->toBe($bare);
@@ -42,11 +43,11 @@ it('namespaces its publish tags', function (): void {
     // testbench while the groups were demonstrably registered.
     $reflection = new ReflectionClass(ServiceProvider::class);
     $groups = array_keys($reflection->getProperty('publishGroups')->getValue());
-    $ours = array_filter($groups, fn (int|string $tag): bool => str_contains((string) $tag, 'password-strength'));
+    $ours = array_filter($groups, fn (int|string $tag): bool => str_contains((string) $tag, 'password-tools'));
 
     expect($ours)->not->toBeEmpty();
 
     foreach ($ours as $tag) {
-        expect((string) $tag)->toStartWith('laranail::password-strength');
+        expect((string) $tag)->toStartWith('laranail::password-tools');
     }
 });

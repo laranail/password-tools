@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * Namespaced `laranail-password-strength::` — the feedback catalogue.
+ * Namespaced `laranail-password-tools::` — the feedback catalogue.
  * Keys mirror the FeedbackKey enum values; a guard asserts every case
  * resolves, so no engine update can leak an untranslated key.
  */

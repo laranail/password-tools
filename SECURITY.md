@@ -9,7 +9,7 @@ are not backported.
 
 Email [opensource@simtabi.com](mailto:opensource@simtabi.com) with a description of the
 issue, the affected version, and — where you can — a minimal reproduction. You can also
-use GitHub's [private vulnerability reporting](https://github.com/laranail/password-strength/security/advisories/new).
+use GitHub's [private vulnerability reporting](https://github.com/laranail/password-tools/security/advisories/new).
 
 Please do **not** open a public issue for a security report.
 

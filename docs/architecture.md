@@ -27,6 +27,20 @@ The password never appears in messages, logs, or command output. The check comma
 argument at all: the value arrives through a hidden prompt so it cannot land in shell history
 or the process list.
 
+## The generators' guarantees
+
+Every draw is `random_int()`. The password builder guarantees each enabled class appears and
+shuffles the guaranteed positions with secure draws; the passphrase builder's optional digit
+lands on a securely-chosen word. Contradictions throw — a generator that silently relaxes its
+recipe hands out weaker secrets than it promised. The EFF large wordlist is the bundled
+vocabulary (7,776 words, ≈12.9 bits/word); anything under 1,024 words is refused.
+
+## The meter's posture
+
+Opt-in and disabled by default. The candidate is scored and discarded — no logging, no
+storage, no echo, `Cache-Control: no-store` — behind a configurable throttle. Over TLS the
+exposure equals submitting the form.
+
 ## Not in this package
 
 Breach checking is `laranail/validation`'s `uncompromised()`; reuse prevention is

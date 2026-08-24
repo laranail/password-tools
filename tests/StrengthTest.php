@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Validator;
-use Simtabi\Laranail\PasswordStrength\Contracts\PasswordScorer;
-use Simtabi\Laranail\PasswordStrength\Facades\PasswordStrength;
-use Simtabi\Laranail\PasswordStrength\Rules\StrongPassword;
-use Simtabi\Laranail\PasswordStrength\Scorers\ZxcvbnScorer;
-use Simtabi\Laranail\PasswordStrength\Support\FeedbackKey;
-use Simtabi\Laranail\PasswordStrength\Support\Score;
+use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
+use Simtabi\Laranail\PasswordTools\Facades\PasswordTools;
+use Simtabi\Laranail\PasswordTools\Rules\StrongPassword;
+use Simtabi\Laranail\PasswordTools\Scorers\ZxcvbnScorer;
+use Simtabi\Laranail\PasswordTools\Support\FeedbackKey;
+use Simtabi\Laranail\PasswordTools\Support\Score;
 
 /** @param array<string, mixed> $data */
 function strongPasses(StrongPassword $rule, string $candidate, array $data = []): bool
@@ -42,12 +42,12 @@ it('fails below the floor and passes at it, for every floor', function (): void 
 });
 
 it('reads its default floor from config', function (): void {
-    config()->set('laranail.password-strength.min_score', 4);
+    config()->set('laranail.password-tools.min_score', 4);
 
     // 'sensible-okay-word' style mid-strength candidates sit below 4.
     expect(strongPasses(new StrongPassword, 'okay-mid-password'))->toBeFalse();
 
-    config()->set('laranail.password-strength.min_score', 0);
+    config()->set('laranail.password-tools.min_score', 0);
     expect(strongPasses(new StrongPassword, 'password'))->toBeTrue();
 });
 
@@ -74,7 +74,7 @@ it('feeds named form fields to the engine through DataAwareRule', function (): v
 });
 
 it('honours globally configured weak tokens', function (): void {
-    config()->set('laranail.password-strength.user_inputs', ['AcmeRocketCorp']);
+    config()->set('laranail.password-tools.user_inputs', ['AcmeRocketCorp']);
 
     $scorer = app(PasswordScorer::class);
     expect($scorer->score('AcmeRocketCorp')->score)->toBeLessThanOrEqual(1);
@@ -187,6 +187,6 @@ it('never repeats the password in the failure messages', function (): void {
 // =========================================================================
 
 it('scores through the facade', function (): void {
-    expect(PasswordStrength::score('password'))->toBeInstanceOf(Score::class)
-        ->and(PasswordStrength::score('password')->score)->toBe(0);
+    expect(PasswordTools::score('password'))->toBeInstanceOf(Score::class)
+        ->and(PasswordTools::score('password')->score)->toBe(0);
 });
