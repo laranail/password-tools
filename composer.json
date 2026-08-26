@@ -90,7 +90,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Simtabi\\Laranail\\PasswordTools\\PasswordToolsServiceProvider"
+                "Simtabi\\Laranail\\PasswordTools\\Providers\\PasswordToolsServiceProvider"
             ]
         },
         "branch-alias": {

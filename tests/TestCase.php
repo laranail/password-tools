@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\PasswordTools\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use Simtabi\Laranail\PasswordTools\PasswordToolsServiceProvider;
+use Simtabi\Laranail\PasswordTools\Providers\PasswordToolsServiceProvider;
 
 abstract class TestCase extends Orchestra
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Testing\TestResponse;
-use Simtabi\Laranail\PasswordTools\PasswordToolsServiceProvider;
+use Simtabi\Laranail\PasswordTools\Providers\PasswordToolsServiceProvider;
 
 function enableMeter(string $throttle = '30,1'): void
 {

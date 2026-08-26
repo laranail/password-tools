@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\PasswordTools;
+namespace Simtabi\Laranail\PasswordTools\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Simtabi\Laranail\Package\Tools\Package;
@@ -11,6 +11,7 @@ use Simtabi\Laranail\PasswordTools\Commands\CheckCommand;
 use Simtabi\Laranail\PasswordTools\Commands\GenerateCommand;
 use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
 use Simtabi\Laranail\PasswordTools\Http\MeterController;
+use Simtabi\Laranail\PasswordTools\PasswordToolsManager;
 use Simtabi\Laranail\PasswordTools\Rules\StrongPassword;
 use Simtabi\Laranail\PasswordTools\Scorers\ZxcvbnScorer;
 use Simtabi\Laranail\PasswordTools\Support\WordList;
@@ -106,6 +107,6 @@ class PasswordToolsServiceProvider extends PackageServiceProvider
 
     private function configPath(): string
     {
-        return dirname(__DIR__).'/config/laranail-password-tools.php';
+        return dirname(__DIR__, 2).'/config/laranail-password-tools.php';
     }
 }
