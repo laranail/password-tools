@@ -31,7 +31,7 @@ it('reads configuration only from the flat org key', function (): void {
 });
 
 it('resolves translations only under the vendored namespace', function (): void {
-    $namespaced = 'laranail-password-tools::messages.weak';
+    $namespaced = 'laranail/password-tools::messages.weak';
     $bare = 'password-tools::messages.weak';
 
     expect(trans($namespaced))->not->toBe($namespaced)

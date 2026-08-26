@@ -62,7 +62,7 @@ final class StrongPassword implements DataAwareRule, ValidationRule
             return;
         }
 
-        $fail($this->message ?? 'laranail-password-tools::messages.weak')->translate();
+        $fail($this->message ?? 'laranail/password-tools::messages.weak')->translate();
 
         foreach ($score->messages(app('translator')) as $feedback) {
             $fail($feedback);
