@@ -107,6 +107,6 @@ class PasswordToolsServiceProvider extends PackageServiceProvider
 
     private function configPath(): string
     {
-        return dirname(__DIR__, 2).'/config/laranail-password-tools.php';
+        return $this->packagePath('config/laranail-password-tools.php');
     }
 }
