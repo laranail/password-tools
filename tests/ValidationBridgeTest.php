@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Validator;
-use Simtabi\Laranail\PasswordHistory\PasswordHistoryServiceProvider;
+use Simtabi\Laranail\PasswordHistory\Providers\PasswordHistoryServiceProvider;
 use Simtabi\Laranail\Validation\Builder\Nodes\PasswordRule;
 use Simtabi\Laranail\Validation\FluentRule;
 
