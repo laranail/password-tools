@@ -45,6 +45,16 @@
         {
             "type": "vcs",
             "url": "https://github.com/laranail/password-history"
+        },
+        {
+            "type": "composer",
+            "url": "https://repo.packagist.org",
+            "exclude": [
+                "laranail/*"
+            ]
+        },
+        {
+            "packagist.org": false
         }
     ],
     "require": {
