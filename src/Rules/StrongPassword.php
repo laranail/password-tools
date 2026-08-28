@@ -30,8 +30,8 @@ final class StrongPassword implements DataAwareRule, ValidationRule
     private array $data = [];
 
     /**
-     * @param  list<string>  $userInputs  literal weak tokens
-     * @param  string|list<string>|null  $userInputsField  form field(s) whose values score weak
+     * @param list<string> $userInputs literal weak tokens
+     * @param string|list<string>|null $userInputsField form field(s) whose values score weak
      */
     public function __construct(
         private readonly ?int $minScore = null,
@@ -73,9 +73,9 @@ final class StrongPassword implements DataAwareRule, ValidationRule
     private function fieldInputs(): array
     {
         $fields = match (true) {
-            $this->userInputsField === null => [],
+            $this->userInputsField === null   => [],
             is_string($this->userInputsField) => [$this->userInputsField],
-            default => $this->userInputsField,
+            default                           => $this->userInputsField,
         };
 
         $inputs = [];

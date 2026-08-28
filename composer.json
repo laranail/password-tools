@@ -1,6 +1,6 @@
 {
     "name": "laranail/password-tools",
-    "description": "zxcvbn-style password strength scoring (0-4) with a translated feedback catalogue — a validation rule and a swappable scorer service.",
+    "description": "zxcvbn-style password strength scoring (0-4) with a translated feedback catalogue \u2014 a validation rule and a swappable scorer service.",
     "keywords": [
         "laravel",
         "password",
@@ -69,8 +69,8 @@
         "laranail/password-history": "^0.1"
     },
     "suggest": {
-        "laranail/validation": "^1.0 — compose into the fluent password() builder as ->strength().",
-        "laranail/password-history": "^0.1 — reuse prevention for the same password() chain."
+        "laranail/validation": "^1.0 \u2014 compose into the fluent password() builder as ->strength().",
+        "laranail/password-history": "^0.1 \u2014 reuse prevention for the same password() chain."
     },
     "autoload": {
         "psr-4": {
@@ -85,7 +85,13 @@
     "scripts": {
         "test": "vendor/bin/pest",
         "phpstan": "vendor/bin/phpstan analyse --memory-limit=2G",
-        "format": "vendor/bin/pint"
+        "format": "@pint-fix",
+        "pint": "vendor/bin/pint --test --config vendor/laranail/package-tools/pint.json",
+        "pint-fix": "vendor/bin/pint --parallel --config vendor/laranail/package-tools/pint.json",
+        "lint": [
+            "@pint",
+            "@phpstan"
+        ]
     },
     "extra": {
         "laravel": {

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\PasswordTools\Scorers;
 
-use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
-use Simtabi\Laranail\PasswordTools\Support\FeedbackKey;
-use Simtabi\Laranail\PasswordTools\Support\Score;
 use ZxcvbnPhp\Zxcvbn;
+use Simtabi\Laranail\PasswordTools\Support\Score;
+use Simtabi\Laranail\PasswordTools\Support\FeedbackKey;
+use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
 
 /**
  * The default scorer over bjeavons/zxcvbn-php. Its one deliberate job
@@ -20,46 +20,46 @@ use ZxcvbnPhp\Zxcvbn;
  */
 final class ZxcvbnScorer implements PasswordScorer
 {
-    /**
-     * Scoring is CPU-bound on input length; beyond this, entropy is not
-     * the question anymore and the scorer answers on the prefix.
-     */
-    private const int MAX_SCORED_LENGTH = 4096;
-
     /** Every warning string bjeavons can emit → the canonical key. */
     public const array WARNINGS = [
-        'Straight rows of keys are easy to guess' => FeedbackKey::WarningStraightRow,
-        'Short keyboard patterns are easy to guess' => FeedbackKey::WarningKeyPattern,
-        'Repeats like "aaa" are easy to guess' => FeedbackKey::WarningSimpleRepeat,
+        'Straight rows of keys are easy to guess'                               => FeedbackKey::WarningStraightRow,
+        'Short keyboard patterns are easy to guess'                             => FeedbackKey::WarningKeyPattern,
+        'Repeats like "aaa" are easy to guess'                                  => FeedbackKey::WarningSimpleRepeat,
         'Repeats like "abcabcabc" are only slightly harder to guess than "abc"' => FeedbackKey::WarningExtendedRepeat,
-        'Sequences like abc or 6543 are easy to guess' => FeedbackKey::WarningSequences,
-        'Recent years are easy to guess' => FeedbackKey::WarningRecentYears,
-        'Dates are often easy to guess' => FeedbackKey::WarningDates,
-        'This is a top-10 common password' => FeedbackKey::WarningTopTen,
-        'This is a top-100 common password' => FeedbackKey::WarningTopHundred,
-        'This is a very common password' => FeedbackKey::WarningCommon,
-        'This is similar to a commonly used password' => FeedbackKey::WarningSimilarToCommon,
-        'A word by itself is easy to guess' => FeedbackKey::WarningWordByItself,
-        'Names and surnames by themselves are easy to guess' => FeedbackKey::WarningNamesByThemselves,
-        'Common names and surnames are easy to guess' => FeedbackKey::WarningCommonNames,
+        'Sequences like abc or 6543 are easy to guess'                          => FeedbackKey::WarningSequences,
+        'Recent years are easy to guess'                                        => FeedbackKey::WarningRecentYears,
+        'Dates are often easy to guess'                                         => FeedbackKey::WarningDates,
+        'This is a top-10 common password'                                      => FeedbackKey::WarningTopTen,
+        'This is a top-100 common password'                                     => FeedbackKey::WarningTopHundred,
+        'This is a very common password'                                        => FeedbackKey::WarningCommon,
+        'This is similar to a commonly used password'                           => FeedbackKey::WarningSimilarToCommon,
+        'A word by itself is easy to guess'                                     => FeedbackKey::WarningWordByItself,
+        'Names and surnames by themselves are easy to guess'                    => FeedbackKey::WarningNamesByThemselves,
+        'Common names and surnames are easy to guess'                           => FeedbackKey::WarningCommonNames,
     ];
 
     /** Every suggestion string bjeavons can emit → the canonical key. */
     public const array SUGGESTIONS = [
         "Predictable substitutions like '@' instead of 'a' don't help very much" => FeedbackKey::SuggestionL33t,
-        "Reversed words aren't much harder to guess" => FeedbackKey::SuggestionReverseWords,
-        'All-uppercase is almost as easy to guess as all-lowercase' => FeedbackKey::SuggestionAllUppercase,
-        "Capitalization doesn't help very much" => FeedbackKey::SuggestionCapitalization,
-        'Avoid dates and years that are associated with you' => FeedbackKey::SuggestionDates,
-        'Avoid recent years' => FeedbackKey::SuggestionRecentYears,
-        'Avoid years that are associated with you' => FeedbackKey::SuggestionAssociatedYears,
-        'Avoid sequences' => FeedbackKey::SuggestionSequences,
-        'Avoid repeated words and characters' => FeedbackKey::SuggestionRepeated,
-        'Use a longer keyboard pattern with more turns' => FeedbackKey::SuggestionLongerKeyboardPattern,
-        'Add another word or two. Uncommon words are better.' => FeedbackKey::SuggestionAnotherWord,
-        'Use a few words, avoid common phrases' => FeedbackKey::SuggestionUseWords,
-        'No need for symbols, digits, or uppercase letters' => FeedbackKey::SuggestionNoNeed,
+        "Reversed words aren't much harder to guess"                             => FeedbackKey::SuggestionReverseWords,
+        'All-uppercase is almost as easy to guess as all-lowercase'              => FeedbackKey::SuggestionAllUppercase,
+        "Capitalization doesn't help very much"                                  => FeedbackKey::SuggestionCapitalization,
+        'Avoid dates and years that are associated with you'                     => FeedbackKey::SuggestionDates,
+        'Avoid recent years'                                                     => FeedbackKey::SuggestionRecentYears,
+        'Avoid years that are associated with you'                               => FeedbackKey::SuggestionAssociatedYears,
+        'Avoid sequences'                                                        => FeedbackKey::SuggestionSequences,
+        'Avoid repeated words and characters'                                    => FeedbackKey::SuggestionRepeated,
+        'Use a longer keyboard pattern with more turns'                          => FeedbackKey::SuggestionLongerKeyboardPattern,
+        'Add another word or two. Uncommon words are better.'                    => FeedbackKey::SuggestionAnotherWord,
+        'Use a few words, avoid common phrases'                                  => FeedbackKey::SuggestionUseWords,
+        'No need for symbols, digits, or uppercase letters'                      => FeedbackKey::SuggestionNoNeed,
     ];
+
+    /**
+     * Scoring is CPU-bound on input length; beyond this, entropy is not
+     * the question anymore and the scorer answers on the prefix.
+     */
+    private const int MAX_SCORED_LENGTH = 4096;
 
     public function score(string $password, array $userInputs = []): Score
     {
