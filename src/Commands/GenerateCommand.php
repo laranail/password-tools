@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\PasswordTools\Commands;
 
 use Simtabi\Laranail\Console\Tools\Commands\Command;
-use Simtabi\Laranail\PasswordTools\PasswordToolsManager;
 use Simtabi\Laranail\Console\Tools\Commands\Concerns\SupportsNamespacedNames;
+use Simtabi\Laranail\PasswordTools\PasswordToolsManager;
 
 /**
  * Generate passwords or passphrases from the terminal. Printing the

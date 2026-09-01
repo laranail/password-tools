@@ -30,9 +30,9 @@ return [
      * and DISCARDED — never logged, stored, or echoed back.
      */
     'meter' => [
-        'enabled'    => false,
-        'path'       => '/_laranail/password-tools/meter',
+        'enabled' => false,
+        'path' => '/_laranail/password-tools/meter',
         'middleware' => ['web'],
-        'throttle'   => '30,1',
+        'throttle' => '30,1',
     ],
 ];

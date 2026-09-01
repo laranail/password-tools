@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\PasswordTools\Commands;
 
 use Simtabi\Laranail\Console\Tools\Commands\Command;
-use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
 use Simtabi\Laranail\Console\Tools\Commands\Concerns\SupportsNamespacedNames;
+use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
 
 /**
  * A dev/debug scorer. Deliberately takes NO password argument: the value
@@ -34,7 +34,7 @@ final class CheckCommand extends Command
 
         $score = $scorer->score($password);
 
-        $this->info("Score: {$score->score}/4" . ($score->isAtLeast(3) ? ' — safely unguessable' : ''));
+        $this->info("Score: {$score->score}/4".($score->isAtLeast(3) ? ' — safely unguessable' : ''));
 
         foreach ($score->messages($this->laravel->make('translator')) as $message) {
             $this->line("  • {$message}");
