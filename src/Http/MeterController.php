@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\PasswordTools\Http;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
 
 /**
@@ -36,8 +36,8 @@ final readonly class MeterController
         $score = $this->scorer->score($password, $userInputs);
 
         return new JsonResponse([
-            'score'         => $score->score,
-            'feedback'      => $score->messages(app('translator')),
+            'score' => $score->score,
+            'feedback' => $score->messages(app('translator')),
             'guesses_log10' => $score->guessesLog10,
         ], 200, ['Cache-Control' => 'no-store']);
     }

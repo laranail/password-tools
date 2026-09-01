@@ -32,7 +32,7 @@ final readonly class WordList
 
     public static function bundled(): self
     {
-        $path = dirname(__DIR__, 2) . '/resources/data/eff-large-wordlist.txt';
+        $path = dirname(__DIR__, 2).'/resources/data/eff-large-wordlist.txt';
         $contents = file_get_contents($path);
 
         if ($contents === false) {

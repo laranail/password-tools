@@ -51,6 +51,6 @@ enum FeedbackKey: string
     /** The translation key in the shipped catalogue. */
     public function translationKey(): string
     {
-        return 'laranail/password-tools::messages.' . $this->value;
+        return 'laranail/password-tools::messages.'.$this->value;
     }
 }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\PasswordTools\Support\WordList;
-use Simtabi\Laranail\PasswordTools\PasswordToolsManager;
 use Simtabi\Laranail\PasswordTools\Facades\PasswordTools;
-use Simtabi\Laranail\PasswordTools\Generators\PasswordBuilder;
 use Simtabi\Laranail\PasswordTools\Generators\PassphraseBuilder;
+use Simtabi\Laranail\PasswordTools\Generators\PasswordBuilder;
+use Simtabi\Laranail\PasswordTools\PasswordToolsManager;
+use Simtabi\Laranail\PasswordTools\Support\WordList;
 
 // =========================================================================
 // Password builder

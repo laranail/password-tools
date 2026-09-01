@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Validator;
-use Simtabi\Laranail\PasswordTools\Support\Score;
-use Simtabi\Laranail\PasswordTools\Support\FeedbackKey;
+use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
+use Simtabi\Laranail\PasswordTools\Facades\PasswordTools;
 use Simtabi\Laranail\PasswordTools\Rules\StrongPassword;
 use Simtabi\Laranail\PasswordTools\Scorers\ZxcvbnScorer;
-use Simtabi\Laranail\PasswordTools\Facades\PasswordTools;
-use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
+use Simtabi\Laranail\PasswordTools\Support\FeedbackKey;
+use Simtabi\Laranail\PasswordTools\Support\Score;
 
 /** @param array<string, mixed> $data */
 function strongPasses(StrongPassword $rule, string $candidate, array $data = []): bool
@@ -113,7 +113,7 @@ it('resolves every FeedbackKey case through the catalogue', function (): void {
 });
 
 it('maps every string the vendored engine can emit — the exhaustiveness guard', function (): void {
-    $files = glob(dirname(__DIR__) . '/vendor/bjeavons/zxcvbn-php/src/{Matchers/*.php,Feedback.php}', GLOB_BRACE);
+    $files = glob(dirname(__DIR__).'/vendor/bjeavons/zxcvbn-php/src/{Matchers/*.php,Feedback.php}', GLOB_BRACE);
     assert(is_array($files));
     expect($files)->not->toBeEmpty();
 

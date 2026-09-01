@@ -6,16 +6,16 @@ namespace Simtabi\Laranail\PasswordTools\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Simtabi\Laranail\Package\Tools\Package;
-use Simtabi\Laranail\PasswordTools\Support\WordList;
+use Simtabi\Laranail\Package\Tools\Providers\PackageServiceProvider;
+use Simtabi\Laranail\PasswordTools\Commands\CheckCommand;
+use Simtabi\Laranail\PasswordTools\Commands\GenerateCommand;
+use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
 use Simtabi\Laranail\PasswordTools\Http\MeterController;
 use Simtabi\Laranail\PasswordTools\PasswordToolsManager;
 use Simtabi\Laranail\PasswordTools\Rules\StrongPassword;
 use Simtabi\Laranail\PasswordTools\Scorers\ZxcvbnScorer;
-use Simtabi\Laranail\PasswordTools\Commands\CheckCommand;
+use Simtabi\Laranail\PasswordTools\Support\WordList;
 use Simtabi\Laranail\Validation\Builder\Nodes\PasswordRule;
-use Simtabi\Laranail\PasswordTools\Commands\GenerateCommand;
-use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
-use Simtabi\Laranail\Package\Tools\Providers\PackageServiceProvider;
 
 class PasswordToolsServiceProvider extends PackageServiceProvider
 {
@@ -101,7 +101,7 @@ class PasswordToolsServiceProvider extends PackageServiceProvider
         $throttle = is_string($meter['throttle'] ?? null) ? $meter['throttle'] : '30,1';
 
         Route::post($path, MeterController::class)
-            ->middleware([...$middleware, 'throttle:' . $throttle])
+            ->middleware([...$middleware, 'throttle:'.$throttle])
             ->name('laranail.password-tools.meter');
     }
 
