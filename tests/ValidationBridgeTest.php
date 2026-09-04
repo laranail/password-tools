@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Validator;
-use Simtabi\Laranail\PasswordHistory\Providers\PasswordHistoryServiceProvider;
-use Simtabi\Laranail\Validation\Builder\Nodes\PasswordRule;
 use Simtabi\Laranail\Validation\FluentRule;
+use Simtabi\Laranail\Validation\Builder\Nodes\PasswordRule;
+use Simtabi\Laranail\PasswordHistory\Providers\PasswordHistoryServiceProvider;
 
 /**
  * The §4.2 bridge, proven end to end — including the FULL chain the whole

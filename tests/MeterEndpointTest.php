@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Testing\TestResponse;
+use Illuminate\Support\Facades\Route;
 use Simtabi\Laranail\PasswordTools\Providers\PasswordToolsServiceProvider;
 
 function enableMeter(string $throttle = '30,1'): void
 {
     config()->set('laranail.password-tools.meter', [
-        'enabled' => true,
-        'path' => '/_laranail/password-tools/meter',
+        'enabled'    => true,
+        'path'       => '/_laranail/password-tools/meter',
         'middleware' => [],
-        'throttle' => $throttle,
+        'throttle'   => $throttle,
     ]);
 
     app()->register(PasswordToolsServiceProvider::class, force: true);
@@ -46,7 +46,7 @@ it('weakens by user inputs sent alongside', function (): void {
     enableMeter();
 
     $score = $this->postJson('/_laranail/password-tools/meter', [
-        'password' => 'xkAq-9214-Trvb',
+        'password'    => 'xkAq-9214-Trvb',
         'user_inputs' => ['xkAq-9214-Trvb'],
     ])->json('score');
 
@@ -63,7 +63,7 @@ it('throttles probing', function (): void {
     enableMeter('2,1');
 
     foreach (range(1, 2) as $i) {
-        $this->postJson('/_laranail/password-tools/meter', ['password' => 'x'.$i])->assertOk();
+        $this->postJson('/_laranail/password-tools/meter', ['password' => 'x' . $i])->assertOk();
     }
 
     $this->postJson('/_laranail/password-tools/meter', ['password' => 'x3'])->assertStatus(429);
