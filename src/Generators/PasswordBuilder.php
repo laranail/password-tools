@@ -151,7 +151,7 @@ final class PasswordBuilder
 
         if ($this->length < count($classes)) {
             throw new InvalidArgumentException(
-                'Length '.$this->length.' cannot include all '.count($classes).' enabled character classes.',
+                'Length ' . $this->length . ' cannot include all ' . count($classes) . ' enabled character classes.',
             );
         }
 
