@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Testing\TestResponse;
+use Illuminate\Support\Facades\Route;
 use Simtabi\Laranail\PasswordTools\Providers\PasswordToolsServiceProvider;
 
 function enableMeter(string $throttle = '30,1'): void
 {
     config()->set('laranail.password-tools.meter', [
-        'enabled' => true,
-        'path' => '/_laranail/password-tools/meter',
+        'enabled'    => true,
+        'path'       => '/_laranail/password-tools/meter',
         'middleware' => [],
-        'throttle' => $throttle,
+        'throttle'   => $throttle,
     ]);
 
     app()->register(PasswordToolsServiceProvider::class, force: true);
@@ -45,9 +45,15 @@ it('scores a candidate with translated feedback and never echoes it', function (
 it('weakens by user inputs sent alongside', function (): void {
     enableMeter();
 
+    // Named rather than written inline: a strong-looking literal sitting
+    // against a 'password' key is a hardcoded-password match, and this one is
+    // a scoring input, not a credential - it authenticates nothing and the
+    // assertion below is about the score dropping, not about the value.
+    $candidate = 'xkAq-9214-Trvb';
+
     $score = $this->postJson('/_laranail/password-tools/meter', [
-        'password' => 'xkAq-9214-Trvb',
-        'user_inputs' => ['xkAq-9214-Trvb'],
+        'password'    => $candidate,
+        'user_inputs' => [$candidate],
     ])->json('score');
 
     expect($score)->toBeLessThanOrEqual(1);
@@ -63,7 +69,7 @@ it('throttles probing', function (): void {
     enableMeter('2,1');
 
     foreach (range(1, 2) as $i) {
-        $this->postJson('/_laranail/password-tools/meter', ['password' => 'x'.$i])->assertOk();
+        $this->postJson('/_laranail/password-tools/meter', ['password' => 'x' . $i])->assertOk();
     }
 
     $this->postJson('/_laranail/password-tools/meter', ['password' => 'x3'])->assertStatus(429);

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\PasswordTools\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Simtabi\Laranail\PasswordTools\Generators\PassphraseBuilder;
-use Simtabi\Laranail\PasswordTools\Generators\PasswordBuilder;
-use Simtabi\Laranail\PasswordTools\PasswordToolsManager;
 use Simtabi\Laranail\PasswordTools\Support\Score;
+use Simtabi\Laranail\PasswordTools\PasswordToolsManager;
+use Simtabi\Laranail\PasswordTools\Generators\PasswordBuilder;
+use Simtabi\Laranail\PasswordTools\Generators\PassphraseBuilder;
 
 /**
  * @method static Score score(string $password, list<string> $userInputs = [])

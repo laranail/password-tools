@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\PasswordTools;
 
-use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
-use Simtabi\Laranail\PasswordTools\Generators\PassphraseBuilder;
-use Simtabi\Laranail\PasswordTools\Generators\PasswordBuilder;
 use Simtabi\Laranail\PasswordTools\Support\Score;
 use Simtabi\Laranail\PasswordTools\Support\WordList;
+use Simtabi\Laranail\PasswordTools\Contracts\PasswordScorer;
+use Simtabi\Laranail\PasswordTools\Generators\PasswordBuilder;
+use Simtabi\Laranail\PasswordTools\Generators\PassphraseBuilder;
 
 /**
  * The package's front door — scoring plus the two fluent generators —
