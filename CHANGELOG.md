@@ -5,6 +5,16 @@ All notable changes to `laranail/password-tools` are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- **`password-tools.generate` resolves `--count`, `--words` and `--length` with `intOption()`.**
+  Each was `is_numeric($this->option('x')) ? (int) $this->option('x') : $default`, which is what the
+  accessor does. These were already correct — the guard was in the right place — so this is
+  behaviour-preserving; `--count` keeps its `max(1, min(100, ...))` clamp, which the accessor does
+  not provide. The package asserts `assertNoNullOnlyOptionGuards()` over `src/`.
+
 ## v0.2.0 - 2026-08-24
 
 The package outgrows its first name: `laranail/password-strength` becomes
