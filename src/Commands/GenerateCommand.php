@@ -6,6 +6,7 @@ namespace Simtabi\Laranail\PasswordTools\Commands;
 
 use Simtabi\Laranail\Console\Tools\Commands\Command;
 use Simtabi\Laranail\PasswordTools\PasswordToolsManager;
+use Simtabi\Laranail\Package\Tools\Commands\Concerns\ReadsOptions;
 use Simtabi\Laranail\Console\Tools\Commands\Concerns\SupportsNamespacedNames;
 
 /**
@@ -16,6 +17,7 @@ use Simtabi\Laranail\Console\Tools\Commands\Concerns\SupportsNamespacedNames;
  */
 final class GenerateCommand extends Command
 {
+    use ReadsOptions;
     use SupportsNamespacedNames;
 
     protected $signature = 'laranail::password-tools.generate
@@ -29,11 +31,11 @@ final class GenerateCommand extends Command
 
     public function handle(PasswordToolsManager $tools): int
     {
-        $count = is_numeric($this->option('count')) ? max(1, min(100, (int) $this->option('count'))) : 1;
+        $count = max(1, min(100, $this->intOption('count', 1)));
 
         if ((bool) $this->option('passphrase')) {
             $builder = $tools->passphrase()
-                ->words(is_numeric($this->option('words')) ? (int) $this->option('words') : 5)
+                ->words($this->intOption('words', 5))
                 ->capitalize();
 
             foreach ($builder->makeMany($count) as $phrase) {
@@ -46,7 +48,7 @@ final class GenerateCommand extends Command
         }
 
         $builder = $tools->password()
-            ->length(is_numeric($this->option('length')) ? (int) $this->option('length') : 16)
+            ->length($this->intOption('length', 16))
             ->symbols((bool) $this->option('symbols'));
 
         foreach ($builder->makeMany($count) as $password) {
