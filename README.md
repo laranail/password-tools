@@ -1,9 +1,10 @@
 # laranail/password-tools
 
-[![Latest version on Packagist](https://img.shields.io/packagist/v/laranail/password-tools.svg)](https://packagist.org/packages/laranail/password-tools)
 [![Tests](https://github.com/laranail/password-tools/actions/workflows/run-tests.yml/badge.svg)](https://github.com/laranail/password-tools/actions/workflows/run-tests.yml)
 [![Static analysis](https://github.com/laranail/password-tools/actions/workflows/phpstan.yml/badge.svg)](https://github.com/laranail/password-tools/actions/workflows/phpstan.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+`laranail/password-tools` is not published to Packagist, so there is no registry-version badge to show — see [Install](#install).
 
 > Password tooling for Laravel: zxcvbn strength scoring with a translated feedback catalogue, fluent CSPRNG password and diceware passphrase generators, a validation rule, and an opt-in live strength-meter endpoint.
 
