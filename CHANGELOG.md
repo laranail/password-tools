@@ -23,7 +23,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 The moving `v0.1.0` tag carries the whole package: the zxcvbn scorer from the first cut, the rename
 from `laranail/password-strength`, and the generators and meter that were briefly tagged `v0.2.0`.
-The per-cut detail is under *Internal history* below.
+The per-cut detail is under *Internal history* in `CHANGELOG.md`.
 
 ### Added
 
