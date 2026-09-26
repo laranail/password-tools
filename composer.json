@@ -79,7 +79,7 @@
         "laranail/password-history": "^0.1"
     },
     "suggest": {
-        "laranail/validation": "^1.0 \u2014 compose into the fluent password() builder as ->strength().",
+        "laranail/validation": "^0.1 \u2014 compose into the fluent password() builder as ->strength().",
         "laranail/password-history": "^0.1 \u2014 reuse prevention for the same password() chain."
     },
     "autoload": {
