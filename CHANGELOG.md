@@ -15,6 +15,36 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   behaviour-preserving; `--count` keeps its `max(1, min(100, ...))` clamp, which the accessor does
   not provide. The package asserts `assertNoNullOnlyOptionGuards()` over `src/`.
 
+### Fixed
+
+- **`suggest` named `laranail/validation ^1.0`, which resolves nothing.** `v1.0.0` was withdrawn in the floor-to-`v0.1.0` reset; the only tag on the remote is the moving `v0.1.0`, so the suggestion now reads `^0.1`. Composer never resolves a suggestion, so no CI run could catch it.
+
+## v0.1.0 - 2026-08-24
+
+The moving `v0.1.0` tag carries the whole package: the zxcvbn scorer from the first cut, the rename
+from `laranail/password-strength`, and the generators and meter that were briefly tagged `v0.2.0`.
+The per-cut detail is under *Internal history* below.
+
+### Added
+
+- `Rules\StrongPassword` over a `PasswordScorer` contract (`bjeavons/zxcvbn-php ^1.4`), with
+  translated feedback that never echoes the password.
+- Fluent CSPRNG generators — `PasswordTools::password()` and `PasswordTools::passphrase()` over
+  the bundled EFF large wordlist.
+- An opt-in meter endpoint, disabled by default, that scores and discards.
+- `laranail::password-tools.check` and `laranail::password-tools.generate`.
+- The guarded bridge onto `laranail/validation`'s `password()` builder (`->strength()`).
+
+### Changed
+
+- **Breaking (rename).** `laranail/password-strength` is now `laranail/password-tools`, namespace
+  `Simtabi\Laranail\PasswordTools`. See the `v0.2.0` entry below for the full name map.
+
+## Internal history (not published)
+
+These were tagged during development and the tags have since been withdrawn. Nothing here is
+separately installable — it all ships inside `v0.1.0` above.
+
 ## v0.2.0 - 2026-08-24
 
 The package outgrows its first name: `laranail/password-strength` becomes
@@ -45,9 +75,9 @@ The package outgrows its first name: `laranail/password-strength` becomes
   configurable throttle.
 - `laranail::password-tools.generate` — passwords or passphrases from the terminal.
 
-## v0.1.0 - 2026-08-24
+## First cut - 2026-08-24
 
-Initial release.
+Initial release, as `laranail/password-strength`.
 
 ### Added
 
