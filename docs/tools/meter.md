@@ -4,7 +4,7 @@ An opt-in live strength meter: POST a candidate, get the score and translated fe
 Disabled by default.
 
 ```php
-// config/laranail-password-tools.php
+// config/laranail/password-tools.php
 'meter' => [
     'enabled' => true,
     'path' => '/_laranail/password-tools/meter',

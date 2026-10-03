@@ -7,6 +7,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- `vendor:publish --tag=laranail::password-tools-config` now writes `config/laranail/password-tools.php`,
+  the file Laravel loads as `laranail.password-tools`. It used to write
+  `config/laranail-password-tools.php`, which loads under a different key, so a published override
+  never took effect. If you published before this release, move your edits to the new path; the old
+  file was never read.
+
 ### Changed
 
 - **`password-tools.generate` resolves `--count`, `--words` and `--length` with `intOption()`.**
