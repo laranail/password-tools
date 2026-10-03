@@ -60,7 +60,7 @@ class PasswordToolsServiceProvider extends PackageServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes(
-                [$this->configPath() => config_path('laranail-password-tools.php')],
+                [$this->configPath() => config_path('laranail/password-tools.php')],
                 $this->package->getNamespacedPublishTag('config'),
             );
 

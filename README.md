@@ -18,7 +18,19 @@ composer require laranail/password-tools
 
 laranail packages resolve through git VCS repositories — see [Installation](docs/installation.md).
 
-## Quick start
+## Quick start guide and usage
+
+### Getting started
+
+Nothing is required: the service provider registers itself through package discovery. The default
+score floor for the rule is `3`, set with `LARANAIL_PASSWORD_TOOLS_MIN_SCORE`. To try the scorer
+from the console (it prompts and never echoes):
+
+```bash
+php artisan laranail::password-tools.check
+```
+
+### Usage
 
 **Score** — the rule and the service:
 
