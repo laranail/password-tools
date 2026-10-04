@@ -104,3 +104,5 @@ Initial release, as `laranail/password-strength`.
 - The flat `laranail.password-tools.*` config, `laranail-password-tools::` translations,
   a live-registry naming guard, and the guarded bridge onto `laranail/validation`'s
   `password()` builder (`->strength()` appears when the validator is installed).
+
+[Unreleased]: https://github.com/laranail/password-tools/compare/v0.1.0...HEAD
