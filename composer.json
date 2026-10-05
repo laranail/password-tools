@@ -61,6 +61,8 @@
         "php": "^8.4.1 || ^8.5",
         "bjeavons/zxcvbn-php": "^1.4",
         "illuminate/contracts": "^13.0",
+        "illuminate/http": "^13.0",
+        "illuminate/routing": "^13.0",
         "illuminate/support": "^13.0",
         "laranail/console": "^0.1",
         "laranail/package-tools": "^0.1"

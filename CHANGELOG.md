@@ -14,6 +14,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `config/laranail-password-tools.php`, which loads under a different key, so a published override
   never took effect. If you published before this release, move your edits to the new path; the old
   file was never read.
+- **`suggest` named `laranail/validation ^1.0`, which resolves nothing.** `v1.0.0` was withdrawn in the floor-to-`v0.1.0` reset; the only tag on the remote is the moving `v0.1.0`, so the suggestion now reads `^0.1`. Composer never resolves a suggestion, so no CI run could catch it.
 
 ### Changed
 
@@ -22,10 +23,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   accessor does. These were already correct — the guard was in the right place — so this is
   behaviour-preserving; `--count` keeps its `max(1, min(100, ...))` clamp, which the accessor does
   not provide. The package asserts `assertNoNullOnlyOptionGuards()` over `src/`.
+- `require` now declares `illuminate/http` and `illuminate/routing`, which the opt-in meter
+  endpoint uses (`MeterController`, `Route::post()`). Both arrived only through
+  `laranail/package-tools` before.
 
-### Fixed
+### Added
 
-- **`suggest` named `laranail/validation ^1.0`, which resolves nothing.** `v1.0.0` was withdrawn in the floor-to-`v0.1.0` reset; the only tag on the remote is the moving `v0.1.0`, so the suggestion now reads `^0.1`. Composer never resolves a suggestion, so no CI run could catch it.
+- The `phpstan` workflow also runs `composer pint` (`laranail-pint --test` against the shared
+  config). Nothing in CI checked formatting before, so a pull request could merge unformatted.
 
 ## v0.1.0 - 2026-08-24
 
