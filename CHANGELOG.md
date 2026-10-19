@@ -7,6 +7,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- **A guard keeps literal credentials out of the tests.**
+  `tests/Architecture/NoLiteralCredentialsTest.php` fails on any literal a secret scanner would
+  report as a leak, and asks for one generated at run time with `TestCredentials` instead. The
+  suite's five remaining literals are deliberately weak inputs whose exact value is what the
+  strength, feedback and redaction tests assert, and each is marked exempt with its reason. The
+  `laranail/package-tools` floor is now `^0.1.9`, the first release with the guard.
+
 ### Fixed
 
 - `vendor:publish --tag=laranail::password-tools-config` now writes `config/laranail/password-tools.php`,
