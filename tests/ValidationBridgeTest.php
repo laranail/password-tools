@@ -28,6 +28,7 @@ it('teaches password() the strength macro', function (): void {
 it('rejects a weak password through the fluent chain, end to end', function (): void {
     $rules = ['password' => [FluentRule::password(defaults: false)->strength(3)]];
 
+    // @credential-literal-exempt: a deliberately weak input the strength rule must reject
     expect(Validator::make(['password' => 'password'], $rules)->passes())->toBeFalse()
         ->and(Validator::make(['password' => 'correct horse battery staple violet umbrella'], $rules)->passes())
         ->toBeTrue();
@@ -49,6 +50,7 @@ it('composes the whole chain: strength AND reuse on one node', function (): void
     // still carries the verdict on the same composed node.
     $rules = ['password' => [$node]];
 
+    // @credential-literal-exempt: a deliberately weak input the strength rule must reject
     expect(Validator::make(['password' => 'password'], $rules)->passes())->toBeFalse()
         ->and(Validator::make(['password' => 'correct horse battery staple violet umbrella'], $rules)->passes())
         ->toBeTrue();

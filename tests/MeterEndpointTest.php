@@ -28,6 +28,7 @@ it('is disabled by default — no route exists', function (): void {
 it('scores a candidate with translated feedback and never echoes it', function (): void {
     enableMeter();
 
+    // @credential-literal-exempt: the most common password, so zxcvbn must score it 0
     $response = $this->postJson('/_laranail/password-tools/meter', ['password' => 'password']);
     assert($response instanceof TestResponse);
 

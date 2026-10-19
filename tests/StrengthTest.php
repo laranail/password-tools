@@ -86,6 +86,7 @@ it('honours globally configured weak tokens', function (): void {
 
 it('surfaces translated catalogue sentences on failure, never raw engine strings', function (): void {
     $validator = Validator::make(
+        // @credential-literal-exempt: a dictionary password, so zxcvbn emits the common-password feedback asserted below
         ['password' => 'password'],
         ['password' => [new StrongPassword(minScore: 3)]],
     );
@@ -174,6 +175,7 @@ it('resolves a config-named scorer class', function (): void {
 
 it('never repeats the password in the failure messages', function (): void {
     $validator = Validator::make(
+        // @credential-literal-exempt: must score below 4 so a failure message exists to check for redaction
         ['password' => 'hunter2-secret-value'],
         ['password' => [new StrongPassword(minScore: 4)]],
     );

@@ -18,6 +18,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- **A guard keeps literal credentials out of the tests.**
+  `tests/Architecture/NoLiteralCredentialsTest.php` fails on any literal a secret scanner would
+  report as a leak, and asks for one generated at run time with `TestCredentials` instead. The
+  suite's five remaining literals are deliberately weak inputs whose exact value is what the
+  strength, feedback and redaction tests assert, and each is marked exempt with its reason. The
+  `laranail/package-tools` floor is now `^0.1.10`, and a second check keeps every purpose passed to
+  `TestCredentials` a single plain word, since a secret scanner reads a compound purpose as the
+  password itself.
 - **`password-tools.generate` resolves `--count`, `--words` and `--length` with `intOption()`.**
   Each was `is_numeric($this->option('x')) ? (int) $this->option('x') : $default`, which is what the
   accessor does. These were already correct — the guard was in the right place — so this is
