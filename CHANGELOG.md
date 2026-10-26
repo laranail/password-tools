@@ -12,7 +12,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - **Windows CI installs the current PHP patch.** setup-php reused the PHP the Windows image
   ships (8.5.11) after 8.5.12 fixed a security issue, so `roave/security-advisories` refused
   to install and every pull request failed its Windows legs. The step now passes
-  `update: true` off Linux, so it upgrades to the latest patch.
+  sets setup-php's `update` (an environment variable) off Linux, so it upgrades to the latest patch.
 - `vendor:publish --tag=laranail::password-tools-config` now writes `config/laranail/password-tools.php`,
   the file Laravel loads as `laranail.password-tools`. It used to write
   `config/laranail-password-tools.php`, which loads under a different key, so a published override
